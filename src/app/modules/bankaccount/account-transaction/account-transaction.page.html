@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Transaction(Deposit or withdrawal)
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <ion-list>
+      <ion-radio-group>
+        <ion-list-header>
+          <ion-label>Transaction Type</ion-label>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label>Deposit</ion-label>
+          <ion-radio slot="start" value="deposit" formControlName="transactionType" checked></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Withdrawal</ion-label>
+          <ion-radio slot="start" value="withdraw" formControlName="transactionType"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+    <ion-item>
+      <ion-label position="floating" color="primary">Amount</ion-label>
+      <ion-input type="number" min="1" formControlName="transactionAmount"></ion-input>
+    </ion-item>
+    <ion-button class="mt40" expand="block" type="submit" [disabled]="!form.valid">Submit</ion-button>
+  </form>
+
+</ion-content>

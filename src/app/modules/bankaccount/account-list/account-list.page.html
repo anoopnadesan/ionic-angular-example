@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Accounts list
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="accountsData" class="list-mini-content" padding>
+  <div *ngIf="accountsData.length > 0" class="list-mini">
+    <ion-list>
+      <ion-item class="list-item-header">
+        <ion-label>Account Number</ion-label>
+        <ion-label>Type</ion-label>
+        <ion-label>Overdraft</ion-label>
+        <ion-label>Min. balance($)</ion-label>
+        <ion-label>Balance($)</ion-label>
+        <ion-label>Deposit/withdrawal</ion-label>
+      </ion-item>
+      <ion-item *ngFor="let account of accountsData">
+        <ion-label>{{account.accountNumber}}</ion-label>
+        <ion-label>{{account.accountType}}</ion-label>
+        <ion-label>{{account.overdraft}}</ion-label>
+        <ion-label>{{account.minBalance}}</ion-label>
+        <ion-label>{{account.balance}}</ion-label>
+        <ion-label>
+          <ion-icon slot="start" name="cash" (click)="accountTransaction(account.accountNumber)"></ion-icon>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="accountsData.length == 0" class="empty-list">
+    No accounts exist!
+  </div>
+</ion-content>
