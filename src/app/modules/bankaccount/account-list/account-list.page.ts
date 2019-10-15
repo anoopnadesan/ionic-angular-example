@@ -65,6 +65,7 @@ export class AccountListPage implements OnInit {
    * @param accounts Array holding all the account number of client
    */
   getAccountDetails(accounts) {
+    this.accountsData = [];
     this.clientService.getAccountDetails(accounts).subscribe((accountData) => {
       this.accountsData.push(accountData);
     });

@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SigninPageModule } from  './modules/auth/signin/signin.module';
 import { AccountListPageModule } from './modules/bankaccount/account-list/account-list.module';
-//import { TransactionsPageModule } from './modules/bankaccount/account-transaction/account-transaction.module';
+import { EventEmitterService } from './services/event-emitter.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +30,8 @@ import { AccountListPageModule } from './modules/bankaccount/account-list/accoun
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    EventEmitterService
   ],
   bootstrap: [AppComponent]
 })

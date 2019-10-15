@@ -120,6 +120,13 @@ export class AuthService {
   }
 
   /**
+   * @summary remove selected account number from session storage
+   */
+  removeSelectedAccountNumber() {
+    this.storage.deleteItem("selectedAccountNumber");
+  }
+
+  /**
    * @summary Invokes user authentication API for authentication
    * @param User oject containing email, password and returnSecureToken
    * @returns Observable of authorization data such as idToken and local id

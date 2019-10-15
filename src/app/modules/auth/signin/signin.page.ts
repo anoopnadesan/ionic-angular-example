@@ -3,6 +3,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../../services/auth.service';
+import { EventEmitterService } from '../../../services/event-emitter.service';
 
 @Component({
   selector: 'app-signin',
@@ -32,6 +33,7 @@ export class SigninPage implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private eventEmitterService: EventEmitterService,
     private formBuilder: FormBuilder,
     private router: Router
   ) { }
@@ -65,7 +67,7 @@ export class SigninPage implements OnInit {
   authenticate(credentils) {
     this.authService.authenticate(credentils)
       .subscribe(res => {
-        //this.authService.setClientConfig(res);
+        this.eventEmitterService.sendMessage(1);
         this.router.navigate(["/account-list"]);
       }, err => {
         this.errorMessage = err.message;

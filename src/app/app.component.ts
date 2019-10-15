@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AuthService } from './services/auth.service';
+import { EventEmitterService } from './services/event-emitter.service';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +40,8 @@ export class AppComponent {
     private location: Location,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private authService: AuthService
+    private authService: AuthService,
+    private eventEmitterService: EventEmitterService,
   ) {
     this.initializeApp();
   }
@@ -50,6 +52,9 @@ export class AppComponent {
       this.splashScreen.hide();
       this.menuCtrl.enable(false);
       
+      this.eventEmitterService.loggedIn.subscribe(res => {
+        this.menuCtrl.enable(true);
+      });
       if (this.authService.accessToken) {
         this.menuCtrl.enable(true);
         this.router.navigate(["/account-list"]);

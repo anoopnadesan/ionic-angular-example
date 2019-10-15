@@ -52,7 +52,6 @@ export class TransactionsPage implements OnInit {
 
   /**
    * @summary summary getData function to get selected account data using account id from auth service
-   * Data receieving through accountListResolver
    * Subscribed through routes, set to @var accountData
    * 
    */
