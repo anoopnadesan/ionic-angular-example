@@ -5,10 +5,15 @@ import {Injectable, EventEmitter} from '@angular/core';
 })
 export class EventEmitterService {
   loggedIn = new EventEmitter();
+  userName = new EventEmitter();
 
   constructor() { }
 
-  sendMessage(data: string) {
+  sendAuthMessage(data: string) {
     this.loggedIn.emit(data);
+  }
+
+  sendUserName(data: string) {
+    this.userName.emit(data);
   }
 }

@@ -21,7 +21,7 @@ export class AccountNewPage implements OnInit {
   toast: any;
 
   constructor(
-    public router: Router,
+    private router: Router,
     public toastController: ToastController,
     private formBuilder: FormBuilder,
     private clientService: ClientService

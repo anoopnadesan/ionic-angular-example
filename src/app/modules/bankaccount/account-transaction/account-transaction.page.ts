@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../../services/auth.service';
 import { ClientService } from '../../../services/client.service';
@@ -23,7 +23,7 @@ export class TransactionsPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
+    //private route: ActivatedRoute,
     private clientService: ClientService,
     private authService: AuthService,
     private router: Router

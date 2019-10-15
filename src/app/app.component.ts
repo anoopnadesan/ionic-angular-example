@@ -32,6 +32,7 @@ export class AppComponent {
     url: 'sign-out',
     icon: 'power'
   }];
+  username: string;
 
   constructor(
     private platform: Platform,
@@ -54,7 +55,11 @@ export class AppComponent {
       
       this.eventEmitterService.loggedIn.subscribe(res => {
         this.menuCtrl.enable(true);
+      });      
+      this.eventEmitterService.userName.subscribe(res => {
+        this.username = res;
       });
+
       if (this.authService.accessToken) {
         this.menuCtrl.enable(true);
         this.router.navigate(["/account-list"]);

@@ -1,6 +1,11 @@
 <ion-app>
   <ion-split-pane>
-    <ion-menu type="overlay">
+    <ion-menu type="overlay">      
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Welcome {{username}}</ion-title>
+        </ion-toolbar>
+      </ion-header>
       <ion-content>
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let m of menuItems">

@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService } from '../../../services/auth.service';
 import { ClientService } from '../../../services/client.service';
+import { EventEmitterService } from '../../../services/event-emitter.service';
 import { ClientResponse } from '../../../models/client-response';
 
 @Component({
@@ -18,13 +19,13 @@ export class AccountListPage implements OnInit {
    * Items array to store all accounts list data
    */
   accountsData: any = [];
-  //clientInfo: any;
 
   constructor(
-    public router: Router,
-    public loadingCtrl: LoadingController,
+    private router: Router,
+    private loadingCtrl: LoadingController,
     private authService: AuthService,
     private clientService: ClientService,
+    private eventEmitterService: EventEmitterService,
     private route: ActivatedRoute
   ) {
   }
@@ -40,15 +41,26 @@ export class AccountListPage implements OnInit {
 
   /**
    * @summary Invoke the client details fetching API
+   * Save account numbers of clients to storage and invokes the account details fetching API
    */
-  getClientDetails() {
+  async getClientDetails() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading accounts list. Please hold on..'
+    });
+    this.itsLoading(loading);    
+    this.accountsData = [];
+
     this.clientService.getClientDetails()
       .subscribe((data: ClientResponse) => {
+        this.eventEmitterService.sendUserName(data.name);
         let clientAge = data.age + "";
         this.authService.clientName = data.name;
         this.authService.clientAge = clientAge;
         this.authService.accountNumbers = JSON.stringify(data.accounts);
-        this.getAccountDetails(data.accounts);
+        this.clientService.getAccountDetails(data.accounts).subscribe(accountData => {
+          loading.dismiss();
+          this.accountsData.push(accountData);
+        });
       }, err => {
         console.log(err);
         this.authService.signOut()
@@ -58,17 +70,6 @@ export class AccountListPage implements OnInit {
             console.log(err);
           });
       });
-  }
-
-  /**
-   * @summary Save account numbers of clients to storage and invokes the account details fetching API
-   * @param accounts Array holding all the account number of client
-   */
-  getAccountDetails(accounts) {
-    this.accountsData = [];
-    this.clientService.getAccountDetails(accounts).subscribe((accountData) => {
-      this.accountsData.push(accountData);
-    });
   }
 
   /**

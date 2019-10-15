@@ -67,7 +67,7 @@ export class SigninPage implements OnInit {
   authenticate(credentils) {
     this.authService.authenticate(credentils)
       .subscribe(res => {
-        this.eventEmitterService.sendMessage(1);
+        this.eventEmitterService.sendAuthMessage(1);
         this.router.navigate(["/account-list"]);
       }, err => {
         this.errorMessage = err.message;
