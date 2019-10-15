@@ -15,7 +15,7 @@
                 {{m.title}}
               </ion-label>
             </ion-item>
-            <ion-item [routerDirection]="'root'" [routerLink]="[m.url]" *ngIf="m.url=='sign-out'" (click)="signOut()">
+            <ion-item *ngIf="m.url=='sign-out'" (click)="signOut()" class="anchor-link">
               <ion-icon slot="start" [name]="m.icon"></ion-icon>
               <ion-label>
                 {{m.title}}

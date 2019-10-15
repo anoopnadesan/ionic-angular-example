@@ -58,6 +58,9 @@ export class AppComponent {
       });      
       this.eventEmitterService.userName.subscribe(res => {
         this.username = res;
+      });  
+      this.eventEmitterService.logOut.subscribe(res => {
+        this.signOut();
       });
 
       if (this.authService.accessToken) {

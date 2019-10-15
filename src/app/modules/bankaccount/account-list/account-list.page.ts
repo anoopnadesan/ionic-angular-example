@@ -63,12 +63,7 @@ export class AccountListPage implements OnInit {
         });
       }, err => {
         console.log(err);
-        this.authService.signOut()
-          .then(res => {
-            this.router.navigate(["/signin"]);
-          }, err => {
-            console.log(err);
-          });
+        this.eventEmitterService.sendToLogout(1);
       });
   }
 

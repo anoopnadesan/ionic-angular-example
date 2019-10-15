@@ -6,6 +6,7 @@ import {Injectable, EventEmitter} from '@angular/core';
 export class EventEmitterService {
   loggedIn = new EventEmitter();
   userName = new EventEmitter();
+  logOut = new EventEmitter();
 
   constructor() { }
 
@@ -15,5 +16,9 @@ export class EventEmitterService {
 
   sendUserName(data: string) {
     this.userName.emit(data);
+  }
+
+  sendToLogout(data: string) {
+    this.logOut.emit(data);
   }
 }
