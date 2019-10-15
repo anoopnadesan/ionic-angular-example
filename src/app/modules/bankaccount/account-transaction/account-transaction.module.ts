@@ -17,7 +17,7 @@ import { TransactionsPage } from './account-transaction.page';
       path: '',
       component: TransactionsPage
     }, {
-      path: 'account-list', loadChildren: './modules/bankaccount/account-list/account-list.module#AccountListPageModule'
+      path: 'account-list', loadChildren: '../../../modules/bankaccount/account-list/account-list.module#AccountListPageModule'
     }])
   ],
   declarations: [TransactionsPage]
